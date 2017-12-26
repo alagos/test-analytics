@@ -14,3 +14,19 @@
  *= require_tree .
  *= require_self
  */
+
+.demo-card-wide {
+  width: 400px;
+  .mdl-card__title {
+    height: 176px;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+  }
+  .mdl-card__title-text {
+    color: black;
+    position: absolute;
+    bottom: 200px;
+    margin-left: 10px;
+  }
+}

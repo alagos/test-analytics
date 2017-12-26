@@ -15,7 +15,7 @@ class Content extends React.Component {
     }
     return (
       <main className="mdl-layout__content">
-        <div className="page-content">
+        <div className="content-grid mdl-grid">
           {articleDivs}
         </div>
       </main>

@@ -9,9 +9,18 @@ class Content extends React.Component {
     console.log('Content', isFetching, articles)
     let articleDivs;
     if (articles) {
-      articleDivs = articles.map((article, idx) => {
-        return <Article key={`article-${idx}`} {...article} />
-      })
+      if (articles.length > 0) {
+        articleDivs = articles.map((article, idx) => {
+          return <Article key={`article-${idx}`} {...article} />
+        })
+      } else {
+        articleDivs =
+          <div className="centeritems mdl-grid">
+            <div className="mdl-cell mdl-cell--12-col mdl-typography--display-2">
+              No articles found
+            </div>
+          </div>
+      }
     }
     return (
       <main className="mdl-layout__content">

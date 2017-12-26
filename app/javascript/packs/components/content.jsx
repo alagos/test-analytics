@@ -1,22 +1,33 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
+import Article from './article'
 
 class Content extends React.Component {
   render() {
+    const {isFetching, articles} = this.props;
+    console.log('Content', isFetching, articles)
+    let articleDivs;
+    if (articles) {
+      articleDivs = articles.map((article, idx) => {
+        return <Article key={`article-${idx}`} {...article} />
+      })
+    }
     return (
       <main className="mdl-layout__content">
-        <div className="page-content">{this.props.results}</div>
+        <div className="page-content">
+          {articleDivs}
+        </div>
       </main>
     )
   }
 }
 
-Content.defaultProps = {
-  results: []
+const mapStateToProps = (state) =>{
+  return {
+    isFetching: state.isFetching,
+    articles: state.articles
+  }
 }
 
-Content.propTypes = {
-  results: PropTypes.array
-}
-
-export default Content
+export default connect(mapStateToProps)(Content)

@@ -7,7 +7,8 @@ export function requestArticles(query) {
 
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES'
 export function receiveArticles(query, json) {
-  return { type: RECEIVE_ARTICLES, query, articles: json.news.value }
+  const articles = (json.news || {}).value
+  return { type: RECEIVE_ARTICLES, query, articles: articles }
 }
 
 export function fetchArticles(query) {

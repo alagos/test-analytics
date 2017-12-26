@@ -1,6 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Header extends React.Component {
+import { fetchArticles } from '../actions/search'
+
+class Header extends React.Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const {dispatch} = this.props;
+    const query = this.form[0].value;
+    console.log(query)
+    dispatch(fetchArticles(query))
+  }
+
   render() {
     return (
       <header className="mdl-layout__header">
@@ -10,17 +21,15 @@ export default class Header extends React.Component {
 
           <div className="mdh-expandable-search mdl-cell--hide-phone">
             <i className="material-icons">search</i>
-            <form action="#">
-              <input type="text" placeholder="Search" size="1"/>
+            <form onSubmit={this.handleSubmit.bind(this)}
+                  ref={(form) => this.form = form} >
+              <input type="text" placeholder="Search" size="1" name='query' />
             </form>
           </div>
-
-          <div className="mdl-layout-spacer mdl-cell--hide-tablet mdl-cell--hide-desktop"></div>
-          <button className="mdh-toggle-search mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-tablet mdl-cell--hide-desktop">
-            <i className="material-icons">search</i>
-          </button>
         </div>
       </header>
     )
   }
 }
+
+export default connect()(Header)

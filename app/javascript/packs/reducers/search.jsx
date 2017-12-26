@@ -1,50 +1,34 @@
-import { combineReducers } from 'redux'
+import { REQUEST_ARTICLES, RECEIVE_ARTICLES } from '../actions/search'
 
-import {
-  ADD_TODO,
-  TOGGLE_TODO,
-  SET_VISIBILITY_FILTER,
-  VisibilityFilters
-} from '../actions/search'
-
-const { SHOW_ALL } = VisibilityFilters
-
-function visibilityFilter(state = SHOW_ALL, action) {
+function articles(
+  state = {
+    isFetching: false,
+    items: []
+  },
+  action
+) {
   switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return action.filter
-    default:
-      return state
-  }
-}
-
-function todos(state = [], action) {
-  switch (action.type) {
-    case ADD_TODO:
-      return [
-        ...state,
-        {
-          text: action.text,
-          completed: false
-        }
-      ]
-    case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          })
-        }
-        return todo
+    case REQUEST_ARTICLES:
+      return Object.assign({}, state, { isFetching: true })
+    case RECEIVE_ARTICLES:
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.articles
       })
     default:
       return state
   }
 }
 
-const searchReducer = combineReducers({
-  visibilityFilter,
-  todos
-})
 
-export default searchReducer
+export default function searchReducer(state = [], action) {
+  switch (action.type) {
+    case RECEIVE_ARTICLES:
+    case REQUEST_ARTICLES:
+      return Object.assign({}, state, {
+        [action.query]: articles(state[action.query], action)
+      })
+    default:
+      return state
+  }
+}

@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require material-design-lite/material.min.js
 //= require_tree .

@@ -1,9 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import DebounceInput from 'react-debounce-input'
 
 import { fetchArticles } from '../actions/search'
 
 class Header extends React.Component {
+  componentDidMount() {
+    document.getElementById('search-input').focus();
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const {dispatch} = this.props;
@@ -23,7 +28,8 @@ class Header extends React.Component {
             <i className="material-icons">search</i>
             <form onSubmit={this.handleSubmit.bind(this)}
                   ref={(form) => this.form = form} >
-              <input type="text" placeholder="Search" size="1" name='query' />
+              <DebounceInput id='search-input' minLength={3} debounceTimeout={400}
+                placeholder="Search" onChange={this.handleSubmit.bind(this)} />
             </form>
           </div>
         </div>

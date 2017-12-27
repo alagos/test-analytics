@@ -1,26 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import DebounceInput from 'react-debounce-input'
 
-import { fetchArticles } from '../actions/search'
+import SearchForm from './search_form'
+import AnalyticsNotification from './analytics_notification'
 
-class Header extends React.Component {
-  componentDidMount() {
-    document.getElementById('search-input').focus();
-  }
-
-  handleSubmit = (fromSubmit, e) => {
-    if (typeof e.preventDefault === "function") {
-      e.preventDefault();
-    }
-    const {dispatch} = this.props;
-    const query = this.form[0].value.trim();
-    console.log(query, fromSubmit)
-    if ( query !== '' && query.length > 2) {
-      dispatch(fetchArticles(query, fromSubmit))
-    }
-  }
-
+export default class Header extends React.Component {
   render() {
     return (
       <header className="mdl-layout__header">
@@ -28,23 +11,10 @@ class Header extends React.Component {
           <span className="mdl-layout-title">
             Helpjuice Article Search Engine
           </span>
-          <div className="mdh-expandable-search mdl-cell--hide-phone">
-            <i className="material-icons">search</i>
-            <form onSubmit={this.handleSubmit.bind(this, true)}
-                  ref={(form) => this.form = form} >
-              <DebounceInput id='search-input' minLength={3} debounceTimeout={400}
-                placeholder="Search" onChange={this.handleSubmit.bind(this, false)} />
-            </form>
-          </div>
-          <div className="mdl-badge" data-badge="!">
-            <button className="mdl-button mdl-js-button mdl-button--icon">
-              <i className="material-icons">notifications</i>
-            </button>
-          </div>
+          <SearchForm />
+          <AnalyticsNotification />
         </div>
       </header>
     )
   }
 }
-
-export default connect()(Header)

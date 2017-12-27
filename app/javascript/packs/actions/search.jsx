@@ -22,6 +22,16 @@ export function fetchArticles(query) {
     };
     const url = `https://api.cognitive.microsoft.com/bing/v7.0/search?q=${query}&responseFilter=News&mkt=en-us`
     console.log(url, params)
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    fetch('/analytics', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify({query: query})
+    })
     return fetch(url, params)
       .then(
         response => response.json(),

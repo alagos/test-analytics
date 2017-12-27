@@ -9,15 +9,15 @@ class Header extends React.Component {
     document.getElementById('search-input').focus();
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (fromSubmit, e) => {
     if (typeof e.preventDefault === "function") {
       e.preventDefault();
     }
     const {dispatch} = this.props;
     const query = this.form[0].value.trim();
-    console.log(query)
+    console.log(query, fromSubmit)
     if ( query !== '' && query.length > 2) {
-      dispatch(fetchArticles(query))
+      dispatch(fetchArticles(query, fromSubmit))
     }
   }
 
@@ -25,15 +25,15 @@ class Header extends React.Component {
     return (
       <header className="mdl-layout__header">
         <div className="mdl-layout__header-row">
-
-          <span className="mdl-layout-title">Helpjuice Article Search Engine</span>
-
+          <span className="mdl-layout-title">
+            Helpjuice Article Search Engine
+          </span>
           <div className="mdh-expandable-search mdl-cell--hide-phone">
             <i className="material-icons">search</i>
-            <form onSubmit={this.handleSubmit.bind(this)}
+            <form onSubmit={this.handleSubmit.bind(this, true)}
                   ref={(form) => this.form = form} >
               <DebounceInput id='search-input' minLength={3} debounceTimeout={400}
-                placeholder="Search" onChange={this.handleSubmit.bind(this)} />
+                placeholder="Search" onChange={this.handleSubmit.bind(this, false)} />
             </form>
           </div>
         </div>

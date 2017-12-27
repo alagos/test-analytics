@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Article from './article'
+import LoadingOverlay from './loading_overlay'
 
 class Content extends React.Component {
   render() {
@@ -27,6 +28,7 @@ class Content extends React.Component {
         <div className="content-grid mdl-grid">
           {articleDivs}
         </div>
+        <LoadingOverlay show={isFetching} />
       </main>
     )
   }

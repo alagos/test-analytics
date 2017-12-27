@@ -10,11 +10,15 @@ class Header extends React.Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
+    if (typeof e.preventDefault === "function") {
+      e.preventDefault();
+    }
     const {dispatch} = this.props;
-    const query = this.form[0].value;
+    const query = this.form[0].value.trim();
     console.log(query)
-    dispatch(fetchArticles(query))
+    if ( query !== '' && query.length > 2) {
+      dispatch(fetchArticles(query))
+    }
   }
 
   render() {

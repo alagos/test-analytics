@@ -36,6 +36,11 @@ class Header extends React.Component {
                 placeholder="Search" onChange={this.handleSubmit.bind(this, false)} />
             </form>
           </div>
+          <div className="mdl-badge" data-badge="!">
+            <button className="mdl-button mdl-js-button mdl-button--icon">
+              <i className="material-icons">notifications</i>
+            </button>
+          </div>
         </div>
       </header>
     )

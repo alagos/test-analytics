@@ -5,4 +5,8 @@ class Analytic < ApplicationRecord
   def strip_query
     query.strip!
   end
+
+  def self.sorted_by_query
+    group(:query).select(:query).select('COUNT(*)').order('COUNT(*) DESC')
+  end
 end

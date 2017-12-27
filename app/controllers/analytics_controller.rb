@@ -1,5 +1,6 @@
 class AnalyticsController < ApplicationController
   def index
+    @analytics = Analytic.sorted_by_query
   end
 
   def create

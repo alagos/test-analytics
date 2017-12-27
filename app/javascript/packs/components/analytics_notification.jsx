@@ -19,7 +19,8 @@ class AnalyticsNotification extends React.Component {
 
   render() {
     return (
-      <div className="mdl-badge" data-badge="!">
+      <div className="mdl-badge" data-badge={gon.count_queries}
+           title='Total unique queries' >
         <button className="mdl-button mdl-js-button mdl-button--icon">
           <i className="material-icons">notifications</i>
         </button>

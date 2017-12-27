@@ -6,10 +6,11 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= Gon::Base.render_data %>
   </head>
 
   <body>
     <%= yield %>
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>

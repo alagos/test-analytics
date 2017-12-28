@@ -1,8 +1,8 @@
 import React from 'react'
 
 export default ({query, count}) => (
-  <div>
-    {query}
-    {count}
-  </div>
+  <tr>
+    <td className='mdl-data-table__cell--non-numeric'>{query}</td>
+    <td>{count}</td>
+  </tr>
 )

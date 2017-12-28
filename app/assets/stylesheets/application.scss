@@ -50,3 +50,17 @@
     top: 200px;
   }
 }
+
+.analytics-modal {
+  width: 500px;
+  .mdl-dialog__content {
+    height: 300px;
+    overflow-y: auto;
+    table {
+      width: 400px;
+      td {
+        white-space: pre-wrap;
+      }
+    }
+  }
+}

@@ -24,10 +24,21 @@ class AnalyticsModal extends React.Component {
 
     }
     return (
-      <dialog className="mdl-dialog" ref={(dialog) => this.dialog = dialog} >
+      <dialog className="analytics-modal mdl-dialog"
+              ref={(dialog) => this.dialog = dialog} >
         <h4 className="mdl-dialog__title">Analytics</h4>
-        <div className="mdl-dialog__content">
-          {analyticRows}
+        <div className="mdl-dialog__content"  >
+          <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp" >
+            <thead>
+              <tr>
+                <th className='mdl-data-table__cell--non-numeric'>Query</th>
+                <th># of searches</th>
+              </tr>
+            </thead>
+            <tbody>
+              {analyticRows}
+            </tbody>
+          </table>
         </div>
         <div className="mdl-dialog__actions">
           <button type="button" className="mdl-button close"

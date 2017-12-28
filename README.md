@@ -1,24 +1,34 @@
-# README
+# Helpjuice test project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It connects to Bing API service and displays news related with the current search.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 2.4.2
+- PostgreSQL
+- Heroku toolbelt
 
-* System dependencies
+## Configuring
 
-* Configuration
+```shell
+  git clone git@github.com:alagos/helpjuice-analytics.git
+  cd helpjuice-analytics
+  bundle install
+  rails db:create db:setup
+```
 
-* Database creation
+## Running
 
-* Database initialization
+Development:
 
-* How to run the test suite
+```shell
+  foreman start -f Procfile.dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Production:
 
-* Deployment instructions
+```shell
+  heroku create
+  git push heroku master
+```
 
-* ...

@@ -2,6 +2,10 @@
 
 It connects to Bing API service and displays news related with the current search.
 
+## Demo
+
+https://helpjuice-searchtest.herokuapp.com/
+
 ## Requirements
 
 - Ruby 2.4.2

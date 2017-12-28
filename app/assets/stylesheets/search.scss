@@ -1,3 +1,53 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.demo-card-wide {
+  width: 400px;
+  .mdl-card__title {
+    height: 176px;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+  }
+  .mdl-card__title-text {
+    color: black;
+    position: absolute;
+    bottom: 180px;
+    margin-left: 10px;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+  .center {
+    margin: auto;
+    width: 5%;
+    padding: 10px;
+  }
+  .mdl-spinner {
+    position: absolute;
+    top: 200px;
+  }
+}
+
+.analytics-modal {
+  width: 500px;
+  .mdl-dialog__content {
+    height: 300px;
+    overflow-y: auto;
+    table {
+      width: 400px;
+      td {
+        white-space: pre-wrap;
+      }
+    }
+  }
+}

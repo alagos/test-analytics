@@ -13,7 +13,7 @@ class AnalyticsNotification extends React.Component {
   loadModal = (e) => {
     const {dispatch} = this.props;
     this.setState({displayModal: true})
-    // dispatch(fetchAnalytics())
+    dispatch(fetchAnalytics())
   }
 
   render() {

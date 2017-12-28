@@ -6,8 +6,8 @@ import LoadingOverlay from './loading_overlay'
 
 class Content extends React.Component {
   render() {
-    const {isFetching, articles} = this.props;
-    console.log('Content', isFetching, articles)
+    const {isFetchingArticles, articles} = this.props;
+    console.log('Content', isFetchingArticles, articles)
     let articleDivs;
     if (articles) {
       if (articles.length > 0) {
@@ -28,7 +28,7 @@ class Content extends React.Component {
         <div className="content-grid mdl-grid">
           {articleDivs}
         </div>
-        <LoadingOverlay show={isFetching} />
+        <LoadingOverlay show={isFetchingArticles} />
       </main>
     )
   }
@@ -36,7 +36,7 @@ class Content extends React.Component {
 
 const mapStateToProps = (state) =>{
   return {
-    isFetching: state.isFetching,
+    isFetchingArticles: state.isFetchingArticles,
     articles: state.articles
   }
 }

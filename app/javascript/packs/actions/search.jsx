@@ -11,6 +11,16 @@ export function receiveArticles(query, json) {
   return { type: RECEIVE_ARTICLES, query, articles: articles }
 }
 
+export const REQUEST_ANALYTICS = 'REQUEST_ANALYTICS'
+export function requestAnalytics() {
+  return { type: REQUEST_ANALYTICS }
+}
+
+export const RECEIVE_ANALYTICS = 'RECEIVE_ANALYTICS'
+export function receiveAnalytics(json) {
+  return { type: RECEIVE_ANALYTICS, analytics: json }
+}
+
 export function fetchArticles(query, mustToSave) {
   return function (dispatch) {
     dispatch(requestArticles(query))
@@ -35,6 +45,17 @@ export function fetchArticles(query, mustToSave) {
 }
 
 export function fetchAnalytics() {
+  return function (dispatch) {
+    dispatch(requestAnalytics())
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    return fetch('/analytics', { headers: { 'X-CSRF-Token': csrfToken }
+      }).then(
+        response => response.json(),
+        error => console.error('An error occurred.', error)
+      ).then(json =>
+        dispatch(receiveAnalytics(json))
+      )
+  }
 }
 
 function saveQuery(query) {

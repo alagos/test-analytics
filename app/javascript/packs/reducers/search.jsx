@@ -1,13 +1,21 @@
-import { REQUEST_ARTICLES, RECEIVE_ARTICLES } from '../actions/search'
+import { REQUEST_ARTICLES, RECEIVE_ARTICLES, REQUEST_ANALYTICS,
+         RECEIVE_ANALYTICS,  } from '../actions/search'
 
 export default function searchReducer(state = {}, action) {
   switch (action.type) {
     case REQUEST_ARTICLES:
-      return Object.assign({}, state, { isFetching: true })
+      return Object.assign({}, state, { isFetchingArticles: true })
     case RECEIVE_ARTICLES:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingArticles: false,
         articles: action.articles
+      })
+    case REQUEST_ANALYTICS:
+      return Object.assign({}, state, { isFetchingAnalytics: true })
+    case RECEIVE_ANALYTICS:
+      return Object.assign({}, state, {
+        isFetchingAnalytics: false,
+        analytics: action.analytics
       })
     default:
       return state

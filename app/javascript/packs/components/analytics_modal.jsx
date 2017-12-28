@@ -1,29 +1,39 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import AnalyticRow from './analytic_row'
+
 class AnalyticsModal extends React.Component {
   componentDidUpdate() {
-    const dialog = this.dialog;
-
+    const {dialog} = this;
     if (! dialog.showModal) { dialogPolyfill.registerDialog(dialog); }
-    if (this.props.display) { dialog.showModal(); }
+    if (this.props.display && !dialog.open) { dialog.showModal(); }
+  }
 
-    dialog.querySelector('.close').addEventListener('click', function() {
-      dialog.close();
-    });
+  closeDialog() {
+    this.dialog.close()
   }
 
   render() {
+    const {analytics} = this.props;
+    let analyticRows;
+    if (analytics) {
+      analyticRows = analytics.map((analytic, idx) => {
+        return <AnalyticRow key={`analytic-${idx}`} {...analytic} />
+      })
+
+    }
     return (
       <dialog className="mdl-dialog" ref={(dialog) => this.dialog = dialog} >
+        <h4 className="mdl-dialog__title">Analytics</h4>
         <div className="mdl-dialog__content">
-          <p>
-            Allow this site to collect usage data to improve your experience?
-          </p>
+          {analyticRows}
         </div>
-        <div className="mdl-dialog__actions mdl-dialog__actions--full-width">
-          <button type="button" className="mdl-button">Agree</button>
-          <button type="button" className="mdl-button close">Disagree</button>
+        <div className="mdl-dialog__actions">
+          <button type="button" className="mdl-button close"
+                  onClick={this.closeDialog.bind(this)} >
+            Close
+          </button>
         </div>
       </dialog>
     )
@@ -32,6 +42,7 @@ class AnalyticsModal extends React.Component {
 
 const mapStateToProps = (state) =>{
   return {
+    isFetchingAnalytics: state.isFetchingAnalytics,
     analytics: state.analytics
   }
 }

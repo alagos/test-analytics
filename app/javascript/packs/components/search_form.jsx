@@ -15,7 +15,6 @@ class SearchForm extends React.Component {
     }
     const {dispatch} = this.props;
     const query = this.form[0].value.trim();
-    console.log(query, fromSubmit)
     if ( query !== '' && query.length > 2) {
       dispatch(fetchArticles(query, fromSubmit))
     }

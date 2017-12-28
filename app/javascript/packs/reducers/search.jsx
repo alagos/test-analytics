@@ -4,7 +4,10 @@ import { REQUEST_ARTICLES, RECEIVE_ARTICLES, REQUEST_ANALYTICS,
 export default function searchReducer(state = {}, action) {
   switch (action.type) {
     case REQUEST_ARTICLES:
-      return Object.assign({}, state, { isFetchingArticles: true })
+      return Object.assign({}, state, {
+        isFetchingArticles: true,
+        query: action.query
+      })
     case RECEIVE_ARTICLES:
       return Object.assign({}, state, {
         isFetchingArticles: false,

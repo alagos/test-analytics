@@ -7,7 +7,6 @@ import LoadingOverlay from './loading_overlay'
 class Content extends React.Component {
   render() {
     const {isFetchingArticles, articles} = this.props;
-    console.log('Content', isFetchingArticles, articles)
     let articleDivs;
     if (articles) {
       if (articles.length > 0) {

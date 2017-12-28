@@ -9,6 +9,8 @@ https://helpjuice-searchtest.herokuapp.com/
 ## Requirements
 
 - Ruby 2.4.2
+- NodeJS 6.0.0+
+- Yarn 0.25.2+
 - PostgreSQL
 - Heroku toolbelt
 

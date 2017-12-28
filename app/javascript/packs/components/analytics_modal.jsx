@@ -5,6 +5,7 @@ import AnalyticRow from './analytic_row'
 
 class AnalyticsModal extends React.Component {
   componentDidUpdate() {
+    // Initializes the MDL dialog
     const {dialog} = this;
     if (! dialog.showModal) { dialogPolyfill.registerDialog(dialog); }
     if (this.props.display && !dialog.open) { dialog.showModal(); }

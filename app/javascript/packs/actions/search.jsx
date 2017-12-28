@@ -21,6 +21,7 @@ export function receiveAnalytics(json) {
   return { type: RECEIVE_ANALYTICS, analytics: json }
 }
 
+// Request to Bing API for articles. Also saves query when is indicated to do so
 export function fetchArticles(query, mustToSave) {
   return function (dispatch, getState) {
     const oldQuery = getState().query;
@@ -46,6 +47,7 @@ export function fetchArticles(query, mustToSave) {
   }
 }
 
+// Loads all the created analytics
 export function fetchAnalytics() {
   return function (dispatch) {
     dispatch(requestAnalytics())
@@ -59,6 +61,7 @@ export function fetchAnalytics() {
   }
 }
 
+// Removes all the created analytics
 export function clearStats() {
   return function (dispatch) {
     return fetch('/analytics', params({ method: 'DELETE'})).then(

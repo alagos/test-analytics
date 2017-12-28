@@ -2,6 +2,7 @@ import React from 'react'
 
 export default class LoadingOverlay extends React.Component{
   componentDidUpdate(prevProps, prevState) {
+    // Reload spinner when this is loaded in an update
     if (this.props.show){
       componentHandler.upgradeDom();
     }

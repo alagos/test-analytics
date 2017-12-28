@@ -5,7 +5,9 @@ import { createStore, compose, applyMiddleware } from 'redux'
 import searchReducer from '../reducers/search'
 
 export default function configureStore(state) {
+  // To enable redux chrome extension
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
   return createStore(
     searchReducer,
     state,

@@ -42,7 +42,6 @@ export function fetchArticles(query, mustToSave) {
         .then(json =>
           dispatch(receiveArticles(query, json))
         )
-
     }
   }
 }
@@ -50,9 +49,8 @@ export function fetchArticles(query, mustToSave) {
 export function fetchAnalytics() {
   return function (dispatch) {
     dispatch(requestAnalytics())
-    const csrfToken = document.querySelector("meta[name=csrf-token]").content
-    return fetch('/analytics', { headers: { 'X-CSRF-Token': csrfToken }
-      }).then(
+
+    return fetch('/analytics', params()).then(
         response => response.json(),
         error => console.error('An error occurred.', error)
       ).then(json =>
@@ -61,15 +59,30 @@ export function fetchAnalytics() {
   }
 }
 
+export function clearStats() {
+  return function (dispatch) {
+    return fetch('/analytics', params({ method: 'DELETE'})).then(
+        response => [],
+        error => console.error('An error occurred.', error)
+      ).then(json =>
+        dispatch(receiveAnalytics(json))
+      )
+  }
+}
+
 function saveQuery(query) {
+  fetch('/analytics', params({
+      method: 'POST',
+      body: JSON.stringify({query: query})
+    }))
+}
+
+function params(newParams = {}) {
   const csrfToken = document.querySelector("meta[name=csrf-token]").content
-  fetch('/analytics', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
-    },
-    body: JSON.stringify({query: query})
-  })
+  newParams['headers'] = {
+    'X-CSRF-Token': csrfToken,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+  return newParams
 }

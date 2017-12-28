@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import AnalyticsModal from './analytics_modal'
-import { fetchAnalytics } from '../actions/search'
+import { fetchAnalytics, clearStats } from '../actions/search'
 
 class AnalyticsNotification extends React.Component {
   constructor() {
@@ -16,6 +16,10 @@ class AnalyticsNotification extends React.Component {
     dispatch(fetchAnalytics())
   }
 
+  clearStats = (e) => {
+    this.props.dispatch(clearStats())
+  }
+
   render() {
     return (
       <div className="mdl-badge" data-badge={gon.count_queries}
@@ -24,7 +28,8 @@ class AnalyticsNotification extends React.Component {
                 onClick={this.loadModal.bind(this)} >
           <i className="material-icons">notifications</i>
         </button>
-        <AnalyticsModal display={this.state.displayModal} />
+        <AnalyticsModal display={this.state.displayModal}
+                        clearStats={this.clearStats.bind(this)} />
       </div>
     )
   }

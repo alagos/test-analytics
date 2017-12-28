@@ -15,7 +15,7 @@ class AnalyticsModal extends React.Component {
   }
 
   render() {
-    const {analytics} = this.props;
+    const {analytics, clearStats} = this.props;
     let analyticRows;
     if (analytics) {
       analyticRows = analytics.map((analytic, idx) => {
@@ -44,6 +44,9 @@ class AnalyticsModal extends React.Component {
           <button type="button" className="mdl-button close"
                   onClick={this.closeDialog.bind(this)} >
             Close
+          </button>
+          <button type="button" className="mdl-button" onClick={clearStats} >
+            Clear Stats
           </button>
         </div>
       </dialog>

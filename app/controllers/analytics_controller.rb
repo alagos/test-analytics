@@ -8,6 +8,12 @@ class AnalyticsController < ApplicationController
     head :created
   end
 
+  def destroy_all
+    Analytic.destroy_all
+  end
+
+  private
+
   def analytic_params
     params.require(:analytic).permit(:query)
   end

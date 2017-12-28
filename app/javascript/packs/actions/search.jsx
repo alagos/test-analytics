@@ -40,7 +40,7 @@ export function fetchArticles(query, mustToSave) {
           error => console.error('An error occurred.', error)
         )
         .then(json =>
-          dispatch(receiveArticles(query, json))
+          dispatch(receiveArticles(json))
         )
     }
   }

@@ -34,6 +34,9 @@ export function fetchArticles(query, mustToSave) {
   }
 }
 
+export function fetchAnalytics() {
+}
+
 function saveQuery(query) {
   const csrfToken = document.querySelector("meta[name=csrf-token]").content
   fetch('/analytics', {

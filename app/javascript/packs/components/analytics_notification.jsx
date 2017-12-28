@@ -1,29 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-// import { fetchArticles } from '../actions/search'
+import AnalyticsModal from './analytics_modal'
+import { fetchAnalytics } from '../actions/search'
 
 class AnalyticsNotification extends React.Component {
+  constructor() {
+    super()
+    this.state = {displayModal: false}
+  }
 
-  // handleSubmit = (fromSubmit, e) => {
-  //   if (typeof e.preventDefault === "function") {
-  //     e.preventDefault();
-  //   }
-  //   const {dispatch} = this.props;
-  //   const query = this.form[0].value.trim();
-  //   console.log(query, fromSubmit)
-  //   if ( query !== '' && query.length > 2) {
-  //     dispatch(fetchArticles(query, fromSubmit))
-  //   }
-  // }
+  loadModal = (e) => {
+    const {dispatch} = this.props;
+    this.setState({displayModal: true})
+    // dispatch(fetchAnalytics())
+  }
 
   render() {
     return (
       <div className="mdl-badge" data-badge={gon.count_queries}
            title='Total unique queries' >
-        <button className="mdl-button mdl-js-button mdl-button--icon">
+        <button className="mdl-button mdl-js-button mdl-button--icon"
+                onClick={this.loadModal.bind(this)} >
           <i className="material-icons">notifications</i>
         </button>
+        <AnalyticsModal display={this.state.displayModal} />
       </div>
     )
   }

@@ -1,10 +1,10 @@
-# Helpjuice test project
+# Test project
 
 It connects to Bing API service and displays news related with the current search.
 
 ## Demo
 
-https://helpjuice-searchtest.herokuapp.com/
+https://analytics-searchtest.herokuapp.com/
 
 ## Requirements
 
@@ -17,8 +17,8 @@ https://helpjuice-searchtest.herokuapp.com/
 ## Configuring
 
 ```shell
-  git clone git@github.com:alagos/helpjuice-analytics.git
-  cd helpjuice-analytics
+  git clone git@github.com:alagos/test-analytics.git
+  cd test-analytics
   bundle install
   rails db:create db:setup
 ```

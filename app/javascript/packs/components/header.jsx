@@ -9,7 +9,7 @@ export default class Header extends React.Component {
       <header className="mdl-layout__header">
         <div className="mdl-layout__header-row">
           <span className="mdl-layout-title">
-            Helpjuice Article Search Engine
+            Article Search Engine
           </span>
           <SearchForm />
           <AnalyticsNotification />

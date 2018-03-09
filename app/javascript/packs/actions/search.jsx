@@ -31,7 +31,7 @@ export function fetchArticles(query, mustToSave) {
       const params = {
         method: 'GET',
         headers: {
-          'Ocp-Apim-Subscription-Key': '9ae5cdcde7e54424bfec36a364a65316'
+          'Ocp-Apim-Subscription-Key': gon.bing_api_key
         }
       };
       const url = `https://api.cognitive.microsoft.com/bing/v7.0/search?q=${query}&responseFilter=News&mkt=en-us`

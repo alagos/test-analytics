@@ -37,5 +37,6 @@ Production:
 ```shell
   heroku create
   git push heroku master
+  heroku run rails db:create db:migrate
 ```
 

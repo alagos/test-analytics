@@ -20,6 +20,7 @@ https://analytics-searchtest.herokuapp.com/
   git clone git@github.com:alagos/test-analytics.git
   cd test-analytics
   bundle install
+  yarn install
   rails db:create db:setup
 ```
 
